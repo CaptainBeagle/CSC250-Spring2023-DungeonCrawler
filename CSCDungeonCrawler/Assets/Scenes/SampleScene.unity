@@ -528,6 +528,10 @@ MonoBehaviour:
   southExit: {fileID: 536083532}
   eastExit: {fileID: 1756022076}
   westExit: {fileID: 1725625876}
+  northOn: 1
+  southOn: 1
+  eastOn: 1
+  westOn: 1
 --- !u!4 &1370348798
 Transform:
   m_ObjectHideFlags: 0

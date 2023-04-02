@@ -586,7 +586,7 @@ MonoBehaviour:
   South: {fileID: 536083532}
   East: {fileID: 1756022076}
   West: {fileID: 1725625876}
-  movementSpeed: 40
+  movementSpeed: 90
 --- !u!135 &1436247915
 SphereCollider:
   m_ObjectHideFlags: 0

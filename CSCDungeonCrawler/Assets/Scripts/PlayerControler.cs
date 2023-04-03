@@ -8,13 +8,15 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody rb;
     public GameObject North, South, East, West;
     public float movementSpeed = 40.0f;
-    private bool mv = false;
+    private bool mv;
 
     // Start is called before the first frame update
     void Start()
     {
         this.rb = this.GetComponent<Rigidbody>();
         print(MasterData.count);
+        print(MasterData.where);
+        this.mv = false;
     }
 
     // Update is called once per frame
@@ -25,22 +27,22 @@ public class PlayerControler : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.UpArrow))
             {
                 this.rb.AddForce(this.North.transform.position * movementSpeed);
-                mv = true;
+                this.mv = true;
             }
             if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 this.rb.AddForce(this.West.transform.position * movementSpeed);
-                mv = true;
+                this.mv = true;
             }
             if(Input.GetKeyDown(KeyCode.RightArrow))
             {
                 this.rb.AddForce(this.East.transform.position * movementSpeed);
-                mv = true;
+                this.mv = true;
             }
             if(Input.GetKeyDown(KeyCode.DownArrow))
             {
                 this.rb.AddForce(this.South.transform.position * movementSpeed);
-                mv = true;
+                this.mv = true;
             }
         }
         
@@ -51,6 +53,22 @@ public class PlayerControler : MonoBehaviour
         if(other.tag.Equals("Door"))
         {
             MasterData.count++;
+            if(other.gameObject == (this.North))
+            {
+                MasterData.where = "North";
+            }
+            if(other.gameObject == (this.South))
+            {
+                MasterData.where = "South";
+            }
+            if(other.gameObject == (this.East))
+            {
+                MasterData.where = "East";
+            }
+            if(other.gameObject == (this.West))
+            {
+                MasterData.where = "West";
+            }
             SceneManager.LoadScene("DungeonRoom");
         }
     }

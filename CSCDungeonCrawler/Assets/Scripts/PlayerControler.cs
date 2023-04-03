@@ -7,9 +7,10 @@ public class PlayerControler : MonoBehaviour
 {
     private Rigidbody rb;
     public GameObject North, South, East, West, Origin;
-    public float movementSpeed = 90.0f;
+    public float movementSpeed = 40.0f;
     private bool mv;
     private bool ExitOn;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +25,40 @@ public class PlayerControler : MonoBehaviour
         }
         if(MasterData.where == "North")
         {
+            this.mv = true;
             this.transform.position = this.South.transform.position;
-            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
+            this.PLEASEJUSTMOVE();
         }
         if(MasterData.where == "South")
         {
+            this.mv = true;
             this.transform.position = this.North.transform.position;
-            
+            this.PLEASEJUSTMOVE();
+        }
+        if(MasterData.where == "East")
+        {
+            this.mv = true;
+            this.transform.position = this.West.transform.position;
+            this.PLEASEJUSTMOVE();
+        }
+        if(MasterData.where == "West")
+        {
+            this.mv = true;
+            this.transform.position = this.East.transform.position;
+            this.PLEASEJUSTMOVE();
+        }
+    }
+
+    void PLEASEJUSTMOVE()
+    {
+        if(this.ExitOn == false)
+        {
+            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
+            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
+            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
+            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
+            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
+            //Why won't this work? Why is it moving it up? It should move it to the position of the object. Why is it doing this now?
         }
     }
 

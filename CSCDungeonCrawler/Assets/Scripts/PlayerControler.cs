@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class PlayerControler : MonoBehaviour
 {
     private Rigidbody rb;
-    public GameObject North, South, East, West;
-    public float movementSpeed = 40.0f;
+    public GameObject North, South, East, West, Origin;
+    public float movementSpeed = 90.0f;
     private bool mv;
+    private bool ExitOn;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,21 @@ public class PlayerControler : MonoBehaviour
         this.rb = this.GetComponent<Rigidbody>();
         print(MasterData.count);
         print(MasterData.where);
-        this.mv = false;
+        this.ExitOn = false;
+        if(MasterData.where == "?")
+        {
+            this.ExitOn = true;
+        }
+        if(MasterData.where == "North")
+        {
+            this.transform.position = this.South.transform.position;
+            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
+        }
+        if(MasterData.where == "South")
+        {
+            this.transform.position = this.North.transform.position;
+            
+        }
     }
 
     // Update is called once per frame
@@ -45,31 +60,38 @@ public class PlayerControler : MonoBehaviour
                 this.mv = true;
             }
         }
+        if(this.transform.position == this.Origin.transform.position)
+        {
+            this.mv = false;
+        }
         
     }
     
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag.Equals("Door"))
+        if(this.ExitOn == true)
         {
-            MasterData.count++;
-            if(other.gameObject == (this.North))
+            if(other.tag.Equals("Door"))
             {
-                MasterData.where = "North";
+                MasterData.count++;
+                if(other.gameObject == (this.North))
+                {
+                    MasterData.where = "North";
+                }
+                if(other.gameObject == (this.South))
+                {
+                    MasterData.where = "South";
+                }
+                if(other.gameObject == (this.East))
+                {
+                    MasterData.where = "East";
+                }
+                if(other.gameObject == (this.West))
+                {
+                    MasterData.where = "West";
+                }
+                SceneManager.LoadScene("DungeonRoom");
             }
-            if(other.gameObject == (this.South))
-            {
-                MasterData.where = "South";
-            }
-            if(other.gameObject == (this.East))
-            {
-                MasterData.where = "East";
-            }
-            if(other.gameObject == (this.West))
-            {
-                MasterData.where = "West";
-            }
-            SceneManager.LoadScene("DungeonRoom");
         }
     }
 }

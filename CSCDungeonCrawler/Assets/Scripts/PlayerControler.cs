@@ -7,7 +7,7 @@ public class PlayerControler : MonoBehaviour
 {
     private Rigidbody rb;
     public GameObject North, South, East, West, Origin;
-    public float movementSpeed = 40.0f;
+    public float movementSpeed = 90.0f;
     private bool mv;
     private bool ExitOn;
 
@@ -19,46 +19,26 @@ public class PlayerControler : MonoBehaviour
         print(MasterData.count);
         print(MasterData.where);
         this.ExitOn = false;
-        if(MasterData.where == "?")
-        {
-            this.ExitOn = true;
-        }
         if(MasterData.where == "North")
         {
             this.mv = true;
             this.transform.position = this.South.transform.position;
-            this.PLEASEJUSTMOVE();
+            this.rb.AddForce(Vector3.forward * movementSpeed);
         }
         if(MasterData.where == "South")
         {
             this.mv = true;
             this.transform.position = this.North.transform.position;
-            this.PLEASEJUSTMOVE();
         }
         if(MasterData.where == "East")
         {
             this.mv = true;
             this.transform.position = this.West.transform.position;
-            this.PLEASEJUSTMOVE();
         }
         if(MasterData.where == "West")
         {
             this.mv = true;
             this.transform.position = this.East.transform.position;
-            this.PLEASEJUSTMOVE();
-        }
-    }
-
-    void PLEASEJUSTMOVE()
-    {
-        if(this.ExitOn == false)
-        {
-            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
-            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
-            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
-            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
-            this.rb.AddForce(this.Origin.transform.position * movementSpeed);
-            //Why won't this work? Why is it moving it up? It should move it to the position of the object. Why is it doing this now?
         }
     }
 
@@ -91,6 +71,7 @@ public class PlayerControler : MonoBehaviour
         if(this.transform.position == this.Origin.transform.position)
         {
             this.mv = false;
+            this.ExitOn = true;
         }
         
     }
@@ -120,6 +101,16 @@ public class PlayerControler : MonoBehaviour
                 }
                 SceneManager.LoadScene("DungeonRoom");
             }
+        }
+        else
+        {
+            
+        }
+        if(other.tag.Equals("Origin"))
+        {
+            this.rb.angularVelocity = Vector3.zero;
+            this.mv = false;
+            this.ExitOn = true;
         }
     }
 }

@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 536083532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655268461}
@@ -426,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 1091130945}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655268461}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 1436247916}
   - component: {fileID: 1436247915}
   - component: {fileID: 1436247919}
-  - component: {fileID: 1436247914}
+  - component: {fileID: 1436247920}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -570,24 +570,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1436247914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436247913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b74f8ec2075f43408fc43ef5deb8294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  North: {fileID: 1091130945}
-  South: {fileID: 536083532}
-  East: {fileID: 1756022076}
-  West: {fileID: 1725625876}
-  Origin: {fileID: 1875861310}
-  movementSpeed: 90
 --- !u!135 &1436247915
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -682,6 +664,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1436247920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436247913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983ce2c7055d2fb4b9b3c94a3543150c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northExit: {fileID: 1091130945}
+  southExit: {fileID: 536083532}
+  eastExit: {fileID: 1756022076}
+  westExit: {fileID: 1725625876}
+  westStart: {fileID: 1725625876}
+  eastStart: {fileID: 1756022076}
+  northStart: {fileID: 1091130945}
+  southStart: {fileID: 536083532}
+  movementSpeed: 40
 --- !u!1 &1532081566
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +846,7 @@ Transform:
   m_GameObject: {fileID: 1725625876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655268461}
@@ -940,7 +943,7 @@ Transform:
   m_GameObject: {fileID: 1756022076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655268461}
@@ -1100,7 +1103,7 @@ Transform:
   m_GameObject: {fileID: 1875861310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

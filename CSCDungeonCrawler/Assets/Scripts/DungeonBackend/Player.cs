@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Player : MonoBehaviour
+public class Player
 {
-    // Start is called before the first frame update
-    void Start()
+    private string name;
+    private Room currentRoom;
+
+    public Player(string name)
     {
-        
+        this.name = name;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Room getCurrentRoom()
     {
-        
+        return this.currentRoom;
     }
+
+    public void setCurrentRoom(Room r)
+    {
+        if (r != null)
+        {
+            this.currentRoom = r;
+        }
+    }
+
+    //getter (accessor) for read only access to the private field name
+    public string getName()
+    {
+        return this.name;
+    }
+
 }

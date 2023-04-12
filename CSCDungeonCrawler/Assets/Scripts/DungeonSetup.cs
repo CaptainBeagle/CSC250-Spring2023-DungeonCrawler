@@ -14,6 +14,8 @@ public class DungeonSetup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MasterData.setupDungeon();
+
         if (this.northOn == false)
         { 
             this.northExit.SetActive(false); 

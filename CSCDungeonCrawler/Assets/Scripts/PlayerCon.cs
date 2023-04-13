@@ -64,18 +64,66 @@ public class PlayerCon : MonoBehaviour
             if(other.gameObject == this.northExit)
             {
                 MasterData.whereDidIComeFrom = "north";
+                if(MasterData.id.Equals("e"))
+                {
+                    MasterData.id = "h1";
+                }
+                else if(MasterData.id.Equals("h1"))
+                {
+                    MasterData.id = "h2";
+                }
+                else if(MasterData.id.Equals("h5"))
+                {
+                    MasterData.id = "s118b";
+                }
             }
             else if (other.gameObject == this.southExit)
             {
                 MasterData.whereDidIComeFrom = "south";
+                if(MasterData.id.Equals("h1"))
+                {
+                    MasterData.id = "e";
+                }
+                else if(MasterData.id.Equals("h2"))
+                {
+                    MasterData.id = "h1";
+                }
+                else if(MasterData.id.Equals("s118b"))
+                {
+                    MasterData.id = "h5";
+                }
             }
             else if (other.gameObject == this.eastExit)
             {
                 MasterData.whereDidIComeFrom = "east";
+                if(MasterData.id.Equals("h2"))
+                {
+                    MasterData.id = "h3";
+                }
+                else if(MasterData.id.Equals("h4"))
+                {
+                    MasterData.id = "h2";
+                }
+                else if(MasterData.id.Equals("h5"))
+                {
+                    MasterData.id = "h4";
+                }
             }
             else if (other.gameObject == this.westExit)
             {
                 MasterData.whereDidIComeFrom = "west";
+                if(MasterData.id.Equals("h2"))
+                {
+                    MasterData.id = "h4";
+                }
+                else if(MasterData.id.Equals("h3"))
+                {
+                    MasterData.id = "h2";
+                }
+                else if(MasterData.id.Equals("h4"))
+                {
+                    MasterData.id = "h5";
+                }
             }
             MasterData.isExiting = false;
             SceneManager.LoadScene("DungeonRoom");
@@ -91,23 +139,35 @@ public class PlayerCon : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.UpArrow) && this.isMoving == false)
         {
-            this.rb.AddForce(this.northExit.transform.position * movementSpeed);
-            this.isMoving = true;
+            if(MasterData.nON == true)
+            {
+                this.rb.AddForce(this.northExit.transform.position * movementSpeed);
+                this.isMoving = true;
+            }
         }
         if(Input.GetKeyDown(KeyCode.LeftArrow) && this.isMoving == false)
         {
-            this.rb.AddForce(this.westExit.transform.position * movementSpeed);
-            this.isMoving = true;
+            if(MasterData.wON == true)
+            {
+                this.rb.AddForce(this.westExit.transform.position * movementSpeed);
+                this.isMoving = true;
+            }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && this.isMoving == false)
         {
-            this.rb.AddForce(this.eastExit.transform.position * movementSpeed);
-            this.isMoving = true;
+            if(MasterData.eON == true)
+            {
+                this.rb.AddForce(this.eastExit.transform.position * movementSpeed);
+                this.isMoving = true;
+            }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && this.isMoving == false)
         {
-            this.rb.AddForce(this.southExit.transform.position * movementSpeed);
-            this.isMoving = true;
+            if(MasterData.sON == true)
+            {
+                this.rb.AddForce(this.southExit.transform.position * movementSpeed);
+                this.isMoving = true;
+            }
         }
 
     }

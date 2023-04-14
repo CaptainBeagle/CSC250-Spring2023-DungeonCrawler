@@ -10,13 +10,20 @@ public class PlayerCon : MonoBehaviour
     public GameObject westStart, eastStart, northStart, southStart;
     public float movementSpeed = 40.0f;
     private bool isMoving;
+    Room currentRoom;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        for(int i = 0; i < 10; i++)
+        {
+            print(Random.Range(1, 10));
+        }
+
         this.rb = this.GetComponent<Rigidbody>();
         this.isMoving = false;
+        this.UpdateExits();
 
         if (!MasterData.whereDidIComeFrom.Equals("?"))
         {
@@ -46,6 +53,27 @@ public class PlayerCon : MonoBehaviour
      
     }
 
+    private void UpdateExits()
+    {
+        this.currentRoom = MasterData.p.getCurrentRoom();
+        if(currentRoom.hasExit("north") == false)
+        {
+            this.northExit.SetActive(false);
+        }
+        if(currentRoom.hasExit("south") == false)
+        {
+            this.southExit.SetActive(false);
+        }
+        if(currentRoom.hasExit("east") == false)
+        {
+            this.eastExit.SetActive(false);
+        }
+        if(currentRoom.hasExit("west") == false)
+        {
+            this.westExit.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Origin"))
@@ -64,66 +92,22 @@ public class PlayerCon : MonoBehaviour
             if(other.gameObject == this.northExit)
             {
                 MasterData.whereDidIComeFrom = "north";
-                if(MasterData.id.Equals("e"))
-                {
-                    MasterData.id = "h1";
-                }
-                else if(MasterData.id.Equals("h1"))
-                {
-                    MasterData.id = "h2";
-                }
-                else if(MasterData.id.Equals("h5"))
-                {
-                    MasterData.id = "s118b";
-                }
+                currentRoom.takeExit(MasterData.p, "north");
             }
             else if (other.gameObject == this.southExit)
             {
                 MasterData.whereDidIComeFrom = "south";
-                if(MasterData.id.Equals("h1"))
-                {
-                    MasterData.id = "e";
-                }
-                else if(MasterData.id.Equals("h2"))
-                {
-                    MasterData.id = "h1";
-                }
-                else if(MasterData.id.Equals("s118b"))
-                {
-                    MasterData.id = "h5";
-                }
+                currentRoom.takeExit(MasterData.p, "south");
             }
             else if (other.gameObject == this.eastExit)
             {
                 MasterData.whereDidIComeFrom = "east";
-                if(MasterData.id.Equals("h2"))
-                {
-                    MasterData.id = "h3";
-                }
-                else if(MasterData.id.Equals("h4"))
-                {
-                    MasterData.id = "h2";
-                }
-                else if(MasterData.id.Equals("h5"))
-                {
-                    MasterData.id = "h4";
-                }
+                currentRoom.takeExit(MasterData.p, "east");
             }
             else if (other.gameObject == this.westExit)
             {
                 MasterData.whereDidIComeFrom = "west";
-                if(MasterData.id.Equals("h2"))
-                {
-                    MasterData.id = "h4";
-                }
-                else if(MasterData.id.Equals("h3"))
-                {
-                    MasterData.id = "h2";
-                }
-                else if(MasterData.id.Equals("h4"))
-                {
-                    MasterData.id = "h5";
-                }
+                currentRoom.takeExit(MasterData.p, "west");
             }
             MasterData.isExiting = false;
             SceneManager.LoadScene("DungeonRoom");
@@ -139,7 +123,7 @@ public class PlayerCon : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.UpArrow) && this.isMoving == false)
         {
-            if(MasterData.nON == true)
+            if(this.currentRoom.hasExit("north"))
             {
                 this.rb.AddForce(this.northExit.transform.position * movementSpeed);
                 this.isMoving = true;
@@ -147,7 +131,7 @@ public class PlayerCon : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.LeftArrow) && this.isMoving == false)
         {
-            if(MasterData.wON == true)
+            if(this.currentRoom.hasExit("west"))
             {
                 this.rb.AddForce(this.westExit.transform.position * movementSpeed);
                 this.isMoving = true;
@@ -155,7 +139,7 @@ public class PlayerCon : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && this.isMoving == false)
         {
-            if(MasterData.eON == true)
+            if(this.currentRoom.hasExit("east"))
             {
                 this.rb.AddForce(this.eastExit.transform.position * movementSpeed);
                 this.isMoving = true;
@@ -163,7 +147,7 @@ public class PlayerCon : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && this.isMoving == false)
         {
-            if(MasterData.sON == true)
+            if(this.currentRoom.hasExit("south"))
             {
                 this.rb.AddForce(this.southExit.transform.position * movementSpeed);
                 this.isMoving = true;

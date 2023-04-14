@@ -10,16 +10,14 @@ public class PlayerCon : MonoBehaviour
     public GameObject westStart, eastStart, northStart, southStart;
     public float movementSpeed = 40.0f;
     private bool isMoving;
+    private bool Aggro;
     Room currentRoom;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 10; i++)
-        {
-            print(Random.Range(1, 10));
-        }
+        this.Aggro = false;
 
         this.rb = this.GetComponent<Rigidbody>();
         this.isMoving = false;
@@ -81,7 +79,21 @@ public class PlayerCon : MonoBehaviour
             this.rb.velocity = Vector3.zero;
             this.rb.Sleep();
             this.isMoving = false;
+            int i = Random.Range(1, 10);
+            
+            if(i < 4)
+            {
+                this.Aggro = true;
+            }
             //this.rb.angularVelocity = Vector3.zero;
+        }
+
+        if(other.gameObject.CompareTag("Battle"))
+        {
+            if(this.Aggro == true)
+            {
+                SceneManager.LoadScene("FightScene");
+            }
         }
     }
 

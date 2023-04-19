@@ -9,12 +9,11 @@ public class Inhabitant
     protected int damage;
     protected string name;
 
-    public Inhabitant()
+    public Inhabitant(string name)
     {
         this.name = name;
-        Random r = new Random();
-        this.hp = r.Next(10, 21);
-        this.ac = r.Next(10, 18);
-        this.damage = r.Next(1, 6);
+        this.hp = Random.Range(10, 21);
+        this.ac = Random.Range(10, 18);
+        this.damage = Random.Range(1, 6);
     }
 }

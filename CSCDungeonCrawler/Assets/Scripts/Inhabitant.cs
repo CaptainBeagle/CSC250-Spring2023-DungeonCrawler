@@ -16,4 +16,11 @@ public class Inhabitant
         this.ac = Random.Range(10, 18);
         this.damage = Random.Range(1, 6);
     }
+
+    public string getData()
+    {
+        string s = this.name;
+        s = s + " - " + this.hp + "/" + this.ac + "/" + this.damage;
+        return s;
+    }
 }

@@ -19,6 +19,7 @@ public class DeathMatch : MonoBehaviour
 
     public void fight()
     {
-
+        //see fight in console because text mesh pro is not working for me
+        
     }
 }

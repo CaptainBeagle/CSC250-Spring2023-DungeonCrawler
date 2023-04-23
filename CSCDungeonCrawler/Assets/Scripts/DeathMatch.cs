@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathMatch : MonoBehaviour
 {
@@ -20,6 +21,27 @@ public class DeathMatch : MonoBehaviour
     public void fight()
     {
         //see fight in console because text mesh pro is not working for me
-        
+        while(dude1.getInfo("hp") > 0 || dude2.getInfo("hp") > 0)
+        {
+            if(dude2.getInfo("ac") < Random.Range(9, 20))
+            {
+                dude2.getInfo("hp") -= dude1.getInfo("damage");
+            }
+            
+            if(dude1.getInfo("ac") < Random.Range(9,20))
+            {
+                dude1.getInfo("hp") -= dude2.getInfo("damage");
+            }
+            
+        }
+        if(dude1.getInfo("hp") <= 0)
+        {
+            print("You Lost. Please Restart Game.");
+        }
+        else
+        {
+            print("You Won!");
+            SceneManager.LoadScene("DungeonRoom");
+        }
     }
 }

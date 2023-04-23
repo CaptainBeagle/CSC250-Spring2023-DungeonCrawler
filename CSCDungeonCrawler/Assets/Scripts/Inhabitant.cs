@@ -23,4 +23,24 @@ public class Inhabitant
         s = s + " - " + this.hp + "/" + this.ac + "/" + this.damage;
         return s;
     }
+
+    public int getInfo(string i)
+    {
+        if(i.Equals("hp"))
+        {
+            return this.hp;
+        }
+        if(i.Equals("ac"))
+        {
+            return this.ac;
+        }
+        if(i.Equals("damage"))
+        {
+            return this.damage;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

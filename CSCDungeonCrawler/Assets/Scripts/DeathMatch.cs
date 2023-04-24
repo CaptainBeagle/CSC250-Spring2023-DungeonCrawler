@@ -25,12 +25,12 @@ public class DeathMatch : MonoBehaviour
         {
             if(dude2.getInfo("ac") < Random.Range(9, 20))
             {
-                dude2.getInfo("hp") -= dude1.getInfo("damage");
+                dude2.hp -= dude1.damage;
             }
             
             if(dude1.getInfo("ac") < Random.Range(9,20))
             {
-                dude1.getInfo("hp") -= dude2.getInfo("damage");
+                dude1.hp -= dude2.damage;
             }
             
         }

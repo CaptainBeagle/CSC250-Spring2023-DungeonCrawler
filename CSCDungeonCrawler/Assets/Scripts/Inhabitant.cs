@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Inhabitant 
 {
-    protected int hp;
-    protected int ac;
-    protected int damage;
+    public int hp;
+    public int ac;
+    public int damage;
     protected string name;
 
     public Inhabitant(string name)

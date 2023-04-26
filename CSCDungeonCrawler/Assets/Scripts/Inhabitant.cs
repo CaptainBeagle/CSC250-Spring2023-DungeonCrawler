@@ -24,6 +24,11 @@ public class Inhabitant
         return s;
     }
 
+    public string getName()
+    {
+        return this.name;
+    }
+
     public int getInfo(string i)
     {
         if(i.Equals("hp"))

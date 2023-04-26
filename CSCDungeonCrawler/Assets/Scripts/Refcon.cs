@@ -11,15 +11,15 @@ public class Refcon : MonoBehaviour
 
     void Start()
     {
-        this.theMonster = new Monster("ROUSE");
+        this.theMonster = new Monster("ROUS");
         print(this.theMonster.getData());
         print(MasterData.p.getData());
         this.theMatch = new DeathMatch(MasterData.p, this.theMonster, this.PlayerGO, this.MonsterGO);
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    public static void Broadcast(string dude1Name, string dude2Name)
     {
-        
+        print(dude1Name + " attacks " + dude2Name);
     }
 }

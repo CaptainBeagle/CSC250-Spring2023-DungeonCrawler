@@ -21,9 +21,6 @@ public class Player : Inhabitant
     }
 
     //getter (accessor) for read only access to the private field name
-    public string getName()
-    {
-        return this.name;
-    }
+    
 
 }

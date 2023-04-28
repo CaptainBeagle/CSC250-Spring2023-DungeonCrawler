@@ -50,6 +50,7 @@ public class DeathMatch
         else
         {
             Debug.Log("You Won!");
+            yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene("DungeonRoom");
         }
     }

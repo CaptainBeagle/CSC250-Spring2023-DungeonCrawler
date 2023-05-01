@@ -12,8 +12,8 @@ public class Refcon : MonoBehaviour
     void Start()
     {
         this.theMonster = new Monster("ROUS");
-        print(this.theMonster.getData());
-        print(MasterData.p.getData());
+        //print(this.theMonster.getData());
+        //print(MasterData.p.getData());
         this.theMatch = new DeathMatch(MasterData.p, this.theMonster, this.PlayerGO, this.MonsterGO);
         this.theMatch.fight();
     }

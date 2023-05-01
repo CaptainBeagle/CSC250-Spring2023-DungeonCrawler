@@ -22,6 +22,9 @@ public class DeathMatch
 
     public IEnumerator fight()
     {
+        //Since this isn't appearing, fight is not being called, why is it not being called? How do I call it?
+        Debug.Log(this.dude2.getData());
+        Debug.Log(this.dude1.getData());
         while(dude1.hp > 0 && dude2.hp > 0)
         {
             yield return new WaitForSeconds(0.5f);

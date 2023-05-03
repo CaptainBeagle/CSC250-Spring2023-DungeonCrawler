@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inhabitant 
 {
     public int hp;
+    public int Maxhp;
     public int ac;
     public int damage;
     protected string name;
@@ -12,7 +13,8 @@ public class Inhabitant
     public Inhabitant(string name)
     {
         this.name = name;
-        this.hp = Random.Range(10, 21);
+        this.Maxhp = Random.Range(10, 21);
+        this.hp = this.Maxhp;
         this.ac = Random.Range(10, 18);
         this.damage = Random.Range(1, 6);
     }
